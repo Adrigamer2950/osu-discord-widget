@@ -55,7 +55,7 @@ object UserData {
             ?: throw IllegalArgumentException("Error parsing user country rank")
         val overallPP = data.getFloat("statistics.pp")
             ?: throw IllegalArgumentException("Error parsing user overall PP")
-        val topPlayPP = getTopPlayPP(userId)
+        val topPlayPP = getTopPlayPP(userId, token)
             ?: throw IllegalArgumentException("Error parsing top play PP")
         val playtime = data.getInteger("statistics.play_time")
             ?: throw IllegalArgumentException("Error parsing user play time")
@@ -75,18 +75,19 @@ object UserData {
             parsePP(topPlayPP),
             parsePlaytime(playtime),
             supporter,
-            mode
+            parseMode(mode)
         )
     }
 
     @Suppress("SimplifyBooleanWithConstants")
-    private fun getTopPlayPP(userId: Int): Float? {
+    private fun getTopPlayPP(userId: Int, token: String): Float? {
         val res = Http.send(
             HttpRequest(
                 url = "https://osu.ppy.sh/api/v2/users/$userId/scores/best?limit=1${
                     if (Constants.OSU_MODE != "") "&mode=${Constants.OSU_MODE}" else ""
                 }}",
                 headers = mapOf(
+                    "Authorization" to "Bearer $token",
                     "Accept" to "application/json"
                 )
             )
@@ -114,6 +115,14 @@ object UserData {
     }
 
     private fun parseRank(rank: Int): String = "#${rank.toLocaleString()}"
+
+    private fun parseMode(mode: String): String = when (mode) {
+        "osu" -> "osu!"
+        "mania" -> "osu!mania"
+        "taiko" -> "osu!taiko"
+        "fruits" -> "osu!catch"
+        else -> throw IllegalArgumentException("lmao $mode isn't a real mode")
+    }
 }
 
 class Stats(
