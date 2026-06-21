@@ -26,6 +26,9 @@ To use this tool, you MUST have:
 Copy `secrets.properties.example` to a new `secrets.properties` file, then fill it with all the required values
 (everything except OSU_MODE is required)
 
+# Warning
+This tool has only been tested on Linux X64. There could be issues on other platforms
+
 # Usage
 
 To run the app you'll have to execute this command:
