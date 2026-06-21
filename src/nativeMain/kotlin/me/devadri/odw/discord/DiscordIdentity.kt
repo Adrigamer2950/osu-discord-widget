@@ -64,8 +64,6 @@ ${ dynamicValues.joinToString(", \n") }
     fun createAndPatchIdentity() {
         val identity = createIdentity()
 
-        println(identity)
-
         val res = Http.send(HttpRequest(
             url = "https://discord.com/api/v9/applications/${Constants.DISCORD_APP_ID}/users/${Constants.DISCORD_USER_ID}/identities/0/profile",
             method = Method.PATCH,
