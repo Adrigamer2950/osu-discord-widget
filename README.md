@@ -9,15 +9,15 @@ use
 
 # Requirements
 
-To use this tool, you MUST have:
+To use this tool, you MUST:
 
 - Know how to create a Widget in Discord. Follow
   [**Chloe Cinders' Tutorial**](https://chloecinders.com/blog/discord-widgets) to learn how to do that.
-- **osu! API Credentials** in order to fetch your profile data. Can be obtained in your
+- Have your **osu! API Credentials** in order to fetch your profile data. Can be obtained in your
   [**osu! Account Settings**](https://osu.ppy.sh/home/account/edit#oauth). On the
   `OAuth` section, create a new `OAuth Application` (callback url doesn't matter)
   and copy the `Client ID` and `Client Secret`.
-- **Discord App Credentials** in order to actually send your data over to discord. Obtained in the
+- Have your **Discord App Credentials** in order to actually send your data over to discord. Obtained in the
   [**Discord Developer Portal**](https://discord.com/developers/applications). Create an application and get the
   `Application ID` and `Bot Token`
 
@@ -30,8 +30,6 @@ Copy `secrets.properties.example` to a new `secrets.properties` file, then fill 
 This tool has only been tested on Linux X64. There could be issues on other platforms
 
 # Usage
-
-To run the app you'll have to execute this command:
 
 ```bash
 ./gradlew runReleaseExecutablePLATFORM
